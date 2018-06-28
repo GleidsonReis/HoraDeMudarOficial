@@ -1,0 +1,19 @@
+{% extends "master.twig" %}
+
+
+{% block conteudoCentral %}
+    {{ parent() }}
+    {% for usuario in usuarios  %}
+        <div>
+            <h1> {{usuario.login}}</h1>
+            <spam>{{usuario.senha}}</spam>
+            <spam>{{usuario.telefone}}</spam>
+             <spam>{{usuario.email}}</spam>
+        </div>
+    {%endfor%}
+
+{% endblock %}
+
+{% block rodape %}
+    {{ parent() }}
+{% endblock %}

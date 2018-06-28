@@ -1,0 +1,53 @@
+{% extends "paginaPrincipal.twig"%}
+
+{% block conteudoCentral %}
+<link href="css/estiloADM.css" rel="stylesheet" type="text/css"/>
+   
+<div class="formulario">
+    <h1> Bem Vindo a Tela de Cadastro de usuários </h1>
+    <form  class="form-group center-block text-center" id="formCadastro">
+               <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Nome:   </span>
+            </div>
+            <input type="text" name="login" class="form-control"/>
+        </div>
+        
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">E-mail:    </span>
+            </div>
+            <input type="email" name="email" class="form-control"/>
+        </div>
+        
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Telefone:    </span>
+            </div>
+            <input type="tel" name="telefone" class="form-control"/>
+        </div>
+        
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Senha:    </span>
+            </div>
+            <input type="password" name="senha" class="form-control"/>
+        </div>
+        
+        <div class="">  
+            <button type="submit" class="btn btn-success">Cadastrar</button>
+        </div>
+
+    </form>
+</div>
+    <div id="div_retorno">
+        
+    </div>
+    <div id="processando" style="display: none;">
+        <img src="img/ajax-loader.gif" />
+    </div>
+    
+{% endblock %}
+
+
+    
