@@ -51,8 +51,8 @@ class ControllerImovel {
         $contato = $this->contexto->get('contato');
         $qntcomodos = $this->contexto->get('qntcomodos');
         $qntquartos = $this->contexto->get('qntquartos');
-
-        $imovel = new Imovel($tipoImovel, $tipoNegocio, $titulo, $imagem1, $descricao, $endereco, $bairro, $cidade, $contato, $qntcomodos, $qntquartos);
+        $valor = $this->contexto->get('valor');
+        $imovel = new Imovel($tipoImovel, $tipoNegocio, $titulo, $imagem1, $descricao, $endereco, $bairro, $cidade, $contato, $qntcomodos, $qntquartos, $valor);
         $modeloImovel = new ModeloImovel();
         if ($id = $modeloImovel->cadastrar($imovel))
             echo ("Imovel $id inserido com sucesso");
@@ -61,6 +61,7 @@ class ControllerImovel {
         
     }
     
- 
+    
+    
 
 }

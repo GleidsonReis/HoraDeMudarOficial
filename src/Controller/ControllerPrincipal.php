@@ -31,9 +31,9 @@ class ControllerPrincipal {
      
     public function chamaIndex(){
         //return $this->response->setContent($this->twig->render('master.twig'));
-        $modeloUsuario = new ModeloImovel();
+        $modeloImovel = new ModeloImovel();
         
-        if ($dados = $modeloUsuario->listarImoveis())
+        if ($dados = $modeloImovel->listarImoveis())
              return $this->response->setContent($this->twig->render('paginaPrincipal.twig', ['imoveis' => $dados]));
         //return $this->response->setContent($this->twig->render('paginaPrincipal.twig', ['imoveis' => $dados]));
         else
@@ -68,6 +68,15 @@ class ControllerPrincipal {
         }
     }
 */
-    
+    public function chamaSubPagina($id) {
+        
+        $modeloImovel = new ModeloImovel();
+        
+        if ($dados = $modeloImovel->buscarImovelID($id))
+             return $this->response->setContent($this->twig->render('subPagina.twig', ['imoveis' => $dados]));
+        //return $this->response->setContent($this->twig->render('paginaPrincipal.twig', ['imoveis' => $dados]));
+        else
+            echo "não há Imoveis Cadastrados";        
+    }
     
 }

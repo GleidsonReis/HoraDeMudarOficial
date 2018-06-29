@@ -36,8 +36,13 @@ $rotas->add('cadastroImovel', new Route('/acao-cadastro-imovel', array('_control
   //Alteração
   //Exclusão
 
+//Rotas Acesso Sub-Paginas
+$rotas->add('subPagina', new Route('/subPagina/{suffix}',array('_controller' => 'HoraDeMudar\Controller\ControllerPrincipal',"method" => 'chamaSubPagina', 'suffix' => '')));
 
 
+
+
+//Rotas Testes
 $rotas->add('listarUsuario', new Route('/list-user',array('_controller' => 'HoraDeMudar\Controller\ControllerAdministrador',"method" => 'listarUsuario')));
 $rotas->add('cadastroProduto', new Route('/cad-Imovel',
         array('_controller' => 'HoraDeMudar\Controller\ControllerImovel',

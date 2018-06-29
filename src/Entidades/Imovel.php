@@ -16,8 +16,9 @@ class Imovel {
     private $contato;
     private $qntcomodos;
     private $qntquartos;
+    private $valor;
 
-    function __construct($tipoImovel, $tipoNegocio, $titulo, $imagem1, $descricao, $endereco, $bairro, $cidade, $contato, $qntcomodos, $qntquartos) {
+    function __construct($tipoImovel, $tipoNegocio, $titulo, $imagem1, $descricao, $endereco, $bairro, $cidade, $contato, $qntcomodos, $qntquartos, $valor) {
         $this->tipoImovel = $tipoImovel;
         $this->tipoNegocio = $tipoNegocio;
         $this->titulo = $titulo;
@@ -29,8 +30,9 @@ class Imovel {
         $this->contato = $contato;
         $this->qntcomodos = $qntcomodos;
         $this->qntquartos = $qntquartos;
+        $this->valor = $valor;
     }
-    
+        
     function getTipoImovel() {
         return $this->tipoImovel;
     }
@@ -73,6 +75,10 @@ class Imovel {
 
     function getQntquartos() {
         return $this->qntquartos;
+    }
+
+    function getValor() {
+        return $this->valor;
     }
 
     function setTipoImovel($tipoImovel) {
@@ -119,8 +125,8 @@ class Imovel {
         $this->qntquartos = $qntquartos;
     }
 
-
-
-
+    function setValor($valor) {
+        $this->valor = $valor;
+    }
 
 }
