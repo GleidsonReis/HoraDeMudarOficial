@@ -41,5 +41,22 @@ class ModeloUsuarios {
             return 'deu erro na conexão:' . $ex;
         }
     }
+    
+    function buscarusuario(String $login, String $senha) {
+    
+        try {
+            $sql = 'select * from usuario where login = :login and senha = :senha';
+            $p_sql = Conexao::getInstancia()->prepare($sql);
+            $p_sql->bindValue(':login', $login);
+            $p_sql->bindValue(':senha', $senha);
+            $p_sql->execute();
+            
+            if($p_sql->rowCount() == 1) 
+               return $p_sql->fetch(PDO::FETCH_OBJ);
+           return false;
+        } catch (Exception $ex) {
+            return 'Erro na conexão:' . $ex;
+        }
+    }
 
 }

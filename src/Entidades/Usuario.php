@@ -9,6 +9,7 @@ class Usuario {
     private $senha;
     private $telefone;
     private $email;
+    private $id;
     
     function __construct($login, $senha, $telefone,$email) {
         $this->login = $login;
@@ -16,6 +17,8 @@ class Usuario {
         $this->telefone = $telefone;
         $this->email = $email;
     }
+    
+  
     
     function getLogin() {
         return $this->login;
@@ -50,6 +53,8 @@ class Usuario {
         $this->senha = $senha;
     }
 
-
+    function getId(){
+        return $this->id;
+        }
 
 }

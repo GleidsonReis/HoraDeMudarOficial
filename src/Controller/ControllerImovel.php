@@ -5,6 +5,7 @@ namespace HoraDeMudar\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\File;
 use Twig\Environment;
 use HoraDeMudar\Util\Sessao;
 use HoraDeMudar\Modelos\ModeloImovel;
@@ -24,26 +25,69 @@ class ControllerImovel {
     }
 
     public function exibeTelaCadastroImovel() {
-      /*  if ($this->sessao->existe('Usuario'))
-            return $this->response->setContent($this->twig->render('cadastro.twig'));
-        else{
+       if ($this->sessao->existe('Usuario'))
+            return $this->response->setContent($this->twig->render('formularioCadastroImovel.twig'));
+       else{
             $destino = '/login';
             $redirecionar = new RedirectResponse($destino);
-            $redirecionar->send();
-            
-        }*/
-         return $this->response->setContent($this->twig->render('formularioCadastroImovel.twig'));
-       
+            $redirecionar->send();    
+        }
     }
 
+   
+    public function mostrarImoveisUsuario() {
+        $modeloImovel = new ModeloImovel();
+        if ($dados = $modeloImovel->buscarImovelIDUsuario($this->sessao->get('idUser')))
+             return $this->response->setContent($this->twig->render('telaMostrarImoveisUser.twig', ['imoveis' => $dados]));
+        //return $this->response->setContent($this->twig->render('paginaPrincipal.twig', ['imoveis' => $dados]));
+        else
+            echo "não há Imoveis Cadastrados";        
+    }
+    
+       public function exibeTelaImoveisExcluir() {
+        $modeloImovel = new ModeloImovel();
+        if ($dados = $modeloImovel->buscarImovelIDUsuario($this->sessao->get('idUser')))
+             return $this->response->setContent($this->twig->render('telaExcluirImoveisUser.twig', ['imoveis' => $dados]));
+        //return $this->response->setContent($this->twig->render('paginaPrincipal.twig', ['imoveis' => $dados]));
+        else
+            echo "não há Imoveis Cadastrados";        
+    }
+    
+    public function acaoExcluirImovel($id){
+       $modeloImovel = new ModeloImovel();
+       $modeloImovel->excluirImovelID($id);
+       $destino = '/excluir-imovel-user';
+       $redirecionar = new RedirectResponse($destino);
+       $redirecionar->send();
+    }
     
     
     public function cadastro() {
-        // validação
+        // Função Upload Imagem
+         // validação
+        $imagem = $this->contexto->files->get('imagem');
+        $path = "img/".$imagem->getClientOriginalName();
+        $imagem->move("img/", $imagem->getClientOriginalName());
+        // echo $imagem->getClientMimeType();
+        $imagem2 = $this->contexto->files->get('imagem2');
+        $path2 = "img/".$imagem2->getClientOriginalName();
+        $imagem2->move("img/", $imagem2->getClientOriginalName());
+        
+        $imagem3 = $this->contexto->files->get('imagem3');
+        $path3 = "img/".$imagem3->getClientOriginalName();
+        $imagem3->move("img/", $imagem3->getClientOriginalName());
+        
+        $imagem4 = $this->contexto->files->get('imagem4');
+        $path4 = "img/".$imagem4->getClientOriginalName();
+        $imagem4->move("img/", $imagem4->getClientOriginalName());
+        
+        $imagem5 = $this->contexto->files->get('imagem5');
+        $path5 = "img/".$imagem5->getClientOriginalName();
+        $imagem5->move("img/", $imagem5->getClientOriginalName());
+        
         $tipoImovel = $this->contexto->get('tipoImovel');
-        $tipoNegocio = $this->contexto->get('tipoImovel');
+        $tipoNegocio = $this->contexto->get('tipoNegocio');
         $titulo = $this->contexto->get('titulo');
-        $imagem1 = $this->contexto->get('imagem1');
         $descricao = $this->contexto->get('descricao');
         $endereco = $this->contexto->get('endereco');
         $bairro = $this->contexto->get('bairro');
@@ -52,16 +96,18 @@ class ControllerImovel {
         $qntcomodos = $this->contexto->get('qntcomodos');
         $qntquartos = $this->contexto->get('qntquartos');
         $valor = $this->contexto->get('valor');
-        $imovel = new Imovel($tipoImovel, $tipoNegocio, $titulo, $imagem1, $descricao, $endereco, $bairro, $cidade, $contato, $qntcomodos, $qntquartos, $valor);
+        $idUser = $this->sessao->get('idUser');
+        $dataExpiracao = $this->contexto->get('dataExpiracao');
+        $status = true;
+        $imovel = new Imovel($tipoImovel, $tipoNegocio, $titulo, $path, $path2,$path3,$path4,$path5, $descricao, $endereco, $bairro, $cidade, $contato, $qntcomodos, $qntquartos, $valor, $dataExpiracao, $status, $idUser);
         $modeloImovel = new ModeloImovel();
         if ($id = $modeloImovel->cadastrar($imovel))
             echo ("Imovel $id inserido com sucesso");
         else
-            echo "erro na inserção";        
+            echo "erro na inserção";      
+            
+        }
         
-    }
-    
-    
-    
-
 }
+    
+  

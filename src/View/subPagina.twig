@@ -16,6 +16,9 @@
     <!-- Custom styles for this template -->
     <link href="../css/startbootstrap-3-col-portfolio.css" rel="stylesheet">
 <link href="../css/estilo.css" rel="stylesheet">
+<link href="../css/lightbox.min.css" rel="stylesheet">
+<link href="css/lightbox.css" rel="stylesheet">
+
     
   </head>
 
@@ -40,16 +43,11 @@
         
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
-                <span class="sr-only">(current)</span>
-              </a>
+            <li class="nav-item">
+              <a class="nav-link" href="../login">Faça Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Faça Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Cadastre-se</a>
+                <a class="nav-link" href="../form-cadastro-adm">Cadastre-se</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
@@ -76,17 +74,17 @@
          
     
         <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-           <img class="card-img-top" src="../{{imoveis.imagem1}}">
+             {% if imoveis.imagem1 %}<a href="../{{imoveis.imagem1}}" data-lightbox="{{imoveis.imagem1}}" data-title="My caption"><img class="card-img-top"  src="../{{imoveis.imagem1}}"></a>  {% endif %}
+             {% if imoveis.imagem2 %}<a href="../{{imoveis.imagem2}}" data-lightbox="{{imoveis.imagem2}}" data-title="My caption"><img class="card-img-top"  src="../{{imoveis.imagem2}}"></a>  {% endif %}
+             {% if imoveis.imagem3 %}<a href="../{{imoveis.imagem3}}" data-lightbox="{{imoveis.imagem3}}" data-title="My caption"><img class="card-img-top"  src="../{{imoveis.imagem3}}"></a>  {% endif %}
+             {% if imoveis.imagem4 %}<a href="../{{imoveis.imagem4}}" data-lightbox="{{imoveis.imagem4}}" data-title="My caption"><img class="card-img-top"  src="../{{imoveis.imagem4}}"></a>  {% endif %}
+             {% if imoveis.imagem5 %}<a href="../{{imoveis.imagem5}}" data-lightbox="{{imoveis.imagem5}}" data-title="My caption"><img class="card-img-top"  src="../{{imoveis.imagem5}}"></a>  {% endif %}
             <div class="card-body">
               <h4 class="card-title">
                  {{imoveis.titulo}}
               </h4>
               <p class="card-text">{{imoveis.descricao}}</p>
-            </div>
-               <a href="/subPagina/{{imoveis.id}}"><button type="submit" name="chamaSubPagina" value="{{imoveis.id}}" class="btn btn-lg btn-block btn-outline-primary eu-quero-marrom "    style="text-align:center; margin: 0 auto;" >Desejo Ver este Imovel !</button></a>
-          </div>
-        </div>
+           
        {%endfor%}
     {% endblock %}
       <!-- /.row -->
@@ -108,7 +106,8 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <script src="../js/lightbox-plus-jquery.min.js"></script>
+    <script src="path/to/lightbox.js"></script>
   </body>
 
 </html>

@@ -1,0 +1,26 @@
+{% extends "telaAdministrador.twig"%}
+
+{% block conteudoCentral %}
+    <h1> Bem Vindo a Tela de Exclusão de Imoveis</h1>
+    <h6> Selecione o Imovel a Excluir!!! </h6>
+    <div class="row">
+    {% for imoveis in imoveis  %}
+        
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+         <a href="/acao-excluir-imovel/{{imoveis.id}}">         
+          <div class="card h-100">
+            <img class="card-img-top" src="{{imoveis.imagem1}}">
+            <div class="card-body">
+              <h4 class="card-title">
+                 {{imoveis.titulo}}
+              </h4>
+              <p class="card-text">{{imoveis.descricao}}</p>
+            </div>
+            </a>
+          </div>
+          
+        </div>
+          
+       {%endfor%}
+   
+{% endblock %}

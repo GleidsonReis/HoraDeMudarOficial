@@ -13,7 +13,6 @@ use HoraDeMudar\Controller\ControllerPrincipal;
 
 $sessao = new Sessao();
 $sessao->start();
-$sessao->add("Usuario", 'Gleidson');
 //$sessao->del();
 
 

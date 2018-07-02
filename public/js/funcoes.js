@@ -25,12 +25,12 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-    $("#formCadastroImovel").submit(function (e) {
+    $("#formCadastro").submit(function (e) {
        e.preventDefault(); // evita que o formulário seja submetido
        $.ajax({
             type: 'POST',
-            url: '/acao-cadastro-imovel',
-            data: $("#formCadastroImovel").serializeArray(),
+            url: '/acao-cadastro-adm',
+            data: $("#formCadastro").serializeArray(),
             success: function (dados) {
                 $("#div_retorno").html(dados);
             },
@@ -50,9 +50,8 @@ $(document).ready(function () {
     });
 });
 
-
 $(document).ready(function () {
-    $("#formCadastro").submit(function (e) {
+    $("#formEscolhaAcaoAdm").submit(function (e) {
        e.preventDefault(); // evita que o formulário seja submetido
        $.ajax({
             type: 'POST',
@@ -79,12 +78,12 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-    $("#formCadastroImovel").submit(function (e) {
+    $("#formLogin").submit(function (e) {
        e.preventDefault(); // evita que o formulário seja submetido
        $.ajax({
             type: 'POST',
-            url: '/acao-cadastro-imovel',
-            data: $("#formCadastroImovel").serializeArray(),
+            url: '/acao-autentica-adm',
+            data: $("#formLogin").serializeArray(),
             success: function (dados) {
                 $("#div_retorno").html(dados);
             },
@@ -103,3 +102,39 @@ $(document).ready(function () {
         });
     });
 });
+
+
+
+$(document).ready(function () {
+    $("#formCadastroImovel").submit(function (e) {
+       e.preventDefault(); // evita que o formulário seja submetido
+       
+       var formData = new FormData(this);
+       $.ajax({
+            type: 'POST',
+            url: '/acao-cadastro-imovel',
+            data: formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            
+            success: function (dados) {
+                $("#div_retorno").html(dados);
+            },
+            beforeSend: function () {
+                $("#processando").css({display: "block"});
+            },
+            complete: function () {
+                    $("#processando").css({display: "none"});
+            },
+            error: function () {
+                $("#div_retorno").html("Erro em chamar a função.");
+                setTimeout(function () {
+                    $("#div_retorno").css({display: "none"});
+                }, 5000);
+            }
+        });
+    });
+});
+
+

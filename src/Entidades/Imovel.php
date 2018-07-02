@@ -9,6 +9,10 @@ class Imovel {
     private $tipoNegocio;
     private $titulo;
     private $imagem1;
+    private $imagem2;
+    private $imagem3;
+    private $imagem4;
+    private $imagem5;
     private $descricao;
     private $endereco;
     private $bairro;
@@ -17,12 +21,19 @@ class Imovel {
     private $qntcomodos;
     private $qntquartos;
     private $valor;
+    private $dataExpiracao;
+    private $status;
+    private $idUser;
 
-    function __construct($tipoImovel, $tipoNegocio, $titulo, $imagem1, $descricao, $endereco, $bairro, $cidade, $contato, $qntcomodos, $qntquartos, $valor) {
+    function __construct($tipoImovel, $tipoNegocio, $titulo, $imagem1, $imagem2,$imagem3,$imagem4,$imagem5, $descricao, $endereco, $bairro, $cidade, $contato, $qntcomodos, $qntquartos, $valor, $dataExpiracao, $status, $idUser) {
         $this->tipoImovel = $tipoImovel;
         $this->tipoNegocio = $tipoNegocio;
         $this->titulo = $titulo;
         $this->imagem1 = $imagem1;
+        $this->imagem2 = $imagem2;
+        $this->imagem3 = $imagem3;
+        $this->imagem4 = $imagem4;
+        $this->imagem5 = $imagem5;
         $this->descricao = $descricao;
         $this->endereco = $endereco;
         $this->bairro = $bairro;
@@ -31,9 +42,57 @@ class Imovel {
         $this->qntcomodos = $qntcomodos;
         $this->qntquartos = $qntquartos;
         $this->valor = $valor;
+        $this->dataExpiracao = $dataExpiracao;
+        $this->status = $status;
+        $this->idUser = $idUser;
     }
-        
-    function getTipoImovel() {
+    function getImagem2() {
+        return $this->imagem2;
+    }
+    function getImagem4() {
+        return $this->imagem4;
+    }
+
+    function getImagem5() {
+        return $this->imagem5;
+    }
+
+    function setImagem4($imagem4) {
+        $this->imagem4 = $imagem4;
+    }
+
+    function setImagem5($imagem5) {
+        $this->imagem5 = $imagem5;
+    }
+
+        function setImagem2($imagem2) {
+        $this->imagem2 = $imagem2;
+    }
+    function getImagem3() {
+        return $this->imagem3;
+    }
+
+    function setImagem3($imagem3) {
+        $this->imagem3 = $imagem3;
+    }
+
+            function getDataExpiracao() {
+        return $this->dataExpiracao;
+    }
+
+    function getStatus() {
+        return $this->status;
+    }
+
+    function setDataExpiracao($dataExpiracao) {
+        $this->dataExpiracao = $dataExpiracao;
+    }
+
+    function setStatus($status) {
+        $this->status = $status;
+    }
+
+        function getTipoImovel() {
         return $this->tipoImovel;
     }
 
@@ -128,5 +187,13 @@ class Imovel {
     function setValor($valor) {
         $this->valor = $valor;
     }
-
+    
+    function setIdUser($idUser) {
+        $this->idUser = $idUser;
+    }
+    
+    function getIdUser() {
+        return $this->idUser;
+    }
+    
 }

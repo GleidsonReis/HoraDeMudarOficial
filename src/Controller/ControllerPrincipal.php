@@ -40,22 +40,17 @@ class ControllerPrincipal {
             echo "não há Imoveis Cadastrados";        
          
     }
-        
+    /*    
         public function chamaIndexTeste(){
         //return $this->response->setContent($this->twig->render('master.twig'));
         $modeloUsuario = new ModeloImovel();
-       if ($this->sessao->existe('Usuario')){
-          if ($dados = $modeloUsuario->listarImoveis())
+         if ($dados = $modeloUsuario->listarImoveis())
              return $this->response->setContent($this->twig->render('paginaPrincipal.twig', ['imoveis' => $dados]));
             else
             echo "não há Imoveis Cadastrados";        
-       }else {
-           $destino = '/login';
-            $redirecionar = new RedirectResponse($destino);
-            $redirecionar->send();
-       }
+      
     } 
-    
+    */
     /*
     public function show() {
         if ($this->sessao->existe('Usuario'))
@@ -78,5 +73,17 @@ class ControllerPrincipal {
         else
             echo "não há Imoveis Cadastrados";        
     }
+    
+    
+     public function exibeTelaLogin() {
+        if ($this->sessao->existe('Usuario'))
+            return $this->response->setContent($this->twig->render('telaAdministrador.twig'));
+        else{
+             return $this->response->setContent($this->twig->render('telaLogin.twig'));
+            
+        }
+       
+    }
+    
     
 }

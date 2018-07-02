@@ -37,21 +37,19 @@ class ControllerAdministrador {
     }
     
      public function exibeTelaAdministrador() {
-      /*  if ($this->sessao->existe('Usuario'))
-            return $this->response->setContent($this->twig->render('cadastro.twig'));
+        if ($this->sessao->existe('Usuario'))
+            return $this->response->setContent($this->twig->render('telaAdministrador.twig'));
         else{
             $destino = '/login';
             $redirecionar = new RedirectResponse($destino);
             $redirecionar->send();
             
-        }*/
+        }
          return $this->response->setContent($this->twig->render('telaAdministrador.twig'));
        
     }
     
-    
     public function cadastro() {
-
         // validação
         $login = $this->contexto->get('login');
         $senha = $this->contexto->get('senha');
@@ -77,5 +75,73 @@ class ControllerAdministrador {
             echo "não há Usuários";        
         
     }
+    
+    
+     public function logoff() {
+
+        $this->sessao->del();
+                    echo '<script>location.href = "/"</script>';
+
+    }
+
+    public function login() {
+        // Constante com a quantidade de tentativas aceitas
+        define('TENTATIVAS_ACEITAS', 4);
+
+        // Constante com a quantidade minutos para bloqueio
+        define('MINUTOS_BLOQUEIO', 30);
+        $usuario = $this->contexto->get('login');
+        $senha = $this->contexto->get('senha');
+        
+      $modeloUsuario = new ModeloUsuarios();
+      $dados= $modeloUsuario->buscarusuario($usuario,$senha);
+      if ($dados==true){
+              
+            echo "Encontrei";
+            $this->sessao->add('idUser', $dados->id);
+            $this->sessao->add('Usuario', $dados->login);
+            $this->sessao->add('telefone', $dados->telefone);
+            $this->sessao->add('email', $dados->email);
+            
+            echo $this->sessao->get('idUser');
+            echo $this->sessao->get('Usuario');
+            echo $this->sessao->get('telefone');
+            echo $this->sessao->get('email');
+            
+            /*echo $dados->id;
+            echo $dados->login;
+            echo $dados->senha;
+            echo $dados->telefone;
+            echo $dados->email;*/   
+            echo '<script>location.href = "tela-adm"</script>';
+        }else {
+                echo "Usuário e/ou Senha Inválido";
+        }
+        /*
+        $User = new Usuario();
+        $User->setUsername($username);
+        $senha += 'ERTYUI';
+        $senha = md5($senha);
+        $User->setSenha($senha);
+        $mUser = new MUsuario();
+        //$result = $mUser->ler($User);
+
+        if ($mUser->ler($User)) {
+            $this->sessao->add('username', $User->getUsername());
+            // $this->sessao->add('senha', $User->getSenha());
+            // echo 'logado';
+            echo '<script>location.href = "logado"</script>';
+//            $response = new RedirectResponse('//logado');
+//            $response->send();
+        } else {
+            echo 'nao logado';
+        }
+
+        if ($this->sessao->existe('ez')) {
+            echo json_encode($_SESSION);
+            exit();*/
+    }
+    
+    
 
 }
