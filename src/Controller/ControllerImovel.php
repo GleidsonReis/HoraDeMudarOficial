@@ -62,6 +62,27 @@ class ControllerImovel {
     }
     
     
+     public function exibeTelaImoveisAlterar() {
+        $modeloImovel = new ModeloImovel();
+        if ($dados = $modeloImovel->buscarImovelIDUsuario($this->sessao->get('idUser')))
+             return $this->response->setContent($this->twig->render('telaAlterarImoveisUser.twig', ['imoveis' => $dados]));
+        //return $this->response->setContent($this->twig->render('paginaPrincipal.twig', ['imoveis' => $dados]));
+        else
+            echo "não há Imoveis Cadastrados";        
+    }
+    
+    
+  public function chamaFormularioAlterarImovel($id) {
+        
+        $modeloImovel = new ModeloImovel();
+        
+        if ($dados = $modeloImovel->buscarImovelID($id))
+             return $this->response->setContent($this->twig->render('formularioAlterarImovel.twig', ['imoveis' => $dados]));
+        //return $this->response->setContent($this->twig->render('paginaPrincipal.twig', ['imoveis' => $dados]));
+        else
+            echo "não há Imoveis Cadastrados";        
+    }
+    
     public function cadastro() {
         // Função Upload Imagem
          // validação
@@ -107,6 +128,41 @@ class ControllerImovel {
             echo "erro na inserção";      
             
         }
+        
+         public function acaoAlterarImovel($id) {
+        // Função Upload Imagem
+        // validação
+        $id = $this->contexto->get('id');
+        $path = $this->contexto->get('imagem');
+        $path2 = $this->contexto->get('imagem2');
+        $path3 = $this->contexto->get('imagem3');
+        $path4 = $this->contexto->get('imagem4');
+        $path5 = $this->contexto->get('imagem5');
+        $tipoImovel = $this->contexto->get('tipoImovel');
+        $tipoNegocio = $this->contexto->get('tipoNegocio');
+        $titulo = $this->contexto->get('titulo');
+        $descricao = $this->contexto->get('descricao');
+        $endereco = $this->contexto->get('endereco');
+        $bairro = $this->contexto->get('bairro');
+        $cidade = $this->contexto->get('cidade');
+        $contato = $this->contexto->get('contato');
+        $qntcomodos = $this->contexto->get('qntcomodos');
+        $qntquartos = $this->contexto->get('qntquartos');
+        $valor = $this->contexto->get('valor');
+        $idUser = $this->sessao->get('idUser');
+        $dataExpiracao = $this->contexto->get('dataExpiracao');
+        $status = true;
+        $imovel = new Imovel($tipoImovel, $tipoNegocio, $titulo, $path, $path2, $path3, $path4, $path5, $descricao, $endereco, $bairro, $cidade, $contato, $qntcomodos, $qntquartos, $valor, $dataExpiracao, $status, $idUser);
+        $modeloImovel = new ModeloImovel();
+        if ($id = $modeloImovel->alterar($imovel, $id)){
+         echo '<script>location.href = "../alterar-imovel-user"</script>';
+            echo ("Imovel $id alterado com sucesso");
+        } else{
+            echo "erro na inserção";
+        }
+    }
+        
+        
         
 }
     

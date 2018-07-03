@@ -30,7 +30,9 @@ $rotas->add('acaocadastroAdministrador', new Route('/acao-cadastro-adm', array('
 $rotas->add('formCadastroImovel', new Route('/form-cadastro-imovel', array('_controller' => 'HoraDeMudar\Controller\ControllerImovel', "method" => 'exibeTelaCadastroImovel')));
 $rotas->add('cadastroImovel', new Route('/acao-cadastro-imovel', array('_controller' => 'HoraDeMudar\Controller\ControllerImovel', "method" => 'cadastro')));
 //Alteração
-//
+$rotas->add('alterarImovelCadastradoUsuario', new Route('/alterar-imovel-user', array('_controller' => 'HoraDeMudar\Controller\ControllerImovel', "method" => 'exibeTelaImoveisAlterar')));
+$rotas->add('formularioAlterarImovel', new Route('/formulario-alterar-imovel/{suffix}',array('_controller' => 'HoraDeMudar\Controller\ControllerImovel',"method" => 'chamaFormularioAlterarImovel', 'suffix' => '')));
+$rotas->add('alterarImovel', new Route('/acao-alterar-imovel', array('_controller' => 'HoraDeMudar\Controller\ControllerImovel', "method" => 'acaoAlterarImovel', 'suffix' => '')));
 //Exclusão
 $rotas->add('excluirImovelCadastradoUsuario', new Route('/excluir-imovel-user', array('_controller' => 'HoraDeMudar\Controller\ControllerImovel', "method" => 'exibeTelaImoveisExcluir')));
 $rotas->add('excluirImovel', new Route('/acao-excluir-imovel/{suffix}',array('_controller' => 'HoraDeMudar\Controller\ControllerImovel',"method" => 'acaoExcluirImovel', 'suffix' => '')));

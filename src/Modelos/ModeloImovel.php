@@ -77,7 +77,7 @@ class ModeloImovel {
             $p_sql->bindValue(':descricao', $imovel->getDescricao());
             $p_sql->bindValue(':endereco', $imovel->getEndereco());
             $p_sql->bindValue(':bairro', $imovel->getBairro());
-            $p_sql->bindValue(':cidade', $imovel->getBairro());
+            $p_sql->bindValue(':cidade', $imovel->getCidade());
             $p_sql->bindValue(':contato', $imovel->getContato());
             $p_sql->bindValue(':qntcomodos', $imovel->getQntcomodos());
             $p_sql->bindValue(':qntquartos', $imovel->getQntquartos());
@@ -95,4 +95,38 @@ class ModeloImovel {
         }
     }
 
+    
+    function alterar(Imovel $imovel, int $id) {
+        try {
+            $sql = 'update imovel set tipoImovel = :tipoImovel, tipoNegocio = :tipoNegocio, titulo = :titulo, imagem1 = :imagem1, imagem2 = :imagem2, imagem3 = :imagem3, imagem4 = :imagem4, imagem5 = :imagem5, descricao = :descricao, endereco = :endereco, bairro = :bairro, cidade = :cidade, contato = :contato, qntcomodos = :qntcomodos, qntquartos = :qntquartos, valor = :valor, dataExpiracao = :dataExpiracao, status = :status, idUsuario = :idUsuario where id = :id ';
+            $p_sql = Conexao::getInstancia()->prepare($sql);
+            $p_sql->bindValue(':tipoImovel', $imovel->getTipoImovel());
+            $p_sql->bindValue(':tipoNegocio', $imovel->getTipoNegocio());
+            $p_sql->bindValue(':titulo', $imovel->getTitulo());
+            $p_sql->bindValue(':imagem1', $imovel->getImagem1());
+            $p_sql->bindValue(':imagem2', $imovel->getImagem2());
+            $p_sql->bindValue(':imagem3', $imovel->getImagem3());
+            $p_sql->bindValue(':imagem4', $imovel->getImagem4());
+            $p_sql->bindValue(':imagem5', $imovel->getImagem5());
+            $p_sql->bindValue(':descricao', $imovel->getDescricao());
+            $p_sql->bindValue(':endereco', $imovel->getEndereco());
+            $p_sql->bindValue(':bairro', $imovel->getBairro());
+            $p_sql->bindValue(':cidade', $imovel->getCidade());
+            $p_sql->bindValue(':contato', $imovel->getContato());
+            $p_sql->bindValue(':qntcomodos', $imovel->getQntcomodos());
+            $p_sql->bindValue(':qntquartos', $imovel->getQntquartos());
+            $p_sql->bindValue(':valor', $imovel->getValor());
+            $p_sql->bindValue(':dataExpiracao', $imovel->getDataExpiracao());
+            $p_sql->bindValue(':status', $imovel->getStatus());
+            $p_sql->bindValue(':idUsuario', $imovel->getIdUser());
+            $p_sql->bindValue(':id', $id);
+            if ($p_sql->execute()){
+               //    return Conexao::getInstancia()->lastInsertId();
+             return $p_sql->rowCount();
+            }
+            return null;
+        } catch (Exception $ex) {
+            return 'deu erro na conexão:' . $ex;
+        }
+    }
 }
