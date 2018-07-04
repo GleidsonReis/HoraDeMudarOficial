@@ -169,4 +169,28 @@ $(document).ready(function () {
     });
 });
 
-
+$(document).ready(function () {
+    $("#formFiltro").submit(function (e) {
+       e.preventDefault(); // evita que o formulário seja submetido
+       $.ajax({
+            type: 'POST',
+            url: '/filtrada',
+            data: $("#formFiltro").serializeArray(),
+            success: function (dados) {
+                $("#div_retorno").html(dados);
+            },
+            beforeSend: function () {
+                $("#processando").css({display: "block"});
+            },
+            complete: function () {
+                    $("#processando").css({display: "none"});
+            },
+            error: function () {
+                $("#div_retorno").html("Erro em chamar a função.");
+                setTimeout(function () {
+                    $("#div_retorno").css({display: "none"});
+                }, 5000);
+            }
+        });
+    });
+});

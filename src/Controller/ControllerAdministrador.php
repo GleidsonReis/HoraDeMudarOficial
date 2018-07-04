@@ -57,11 +57,12 @@ class ControllerAdministrador {
         $email = $this->contexto->get('email');
         $usuario = new Usuario($login, $senha, $telefone, $email);
         $modeloUsuario = new ModeloUsuarios();
-        if ($id = $modeloUsuario->cadastrar($usuario))
-            echo ("Usuario $id inserido com sucesso");
-        else
+        if ($id = $modeloUsuario->cadastrar($usuario)){
+        echo "<script>alert('Usuário Cadastrado com Sucesso ')</script>";
+        echo "<script>window.location = '/login';</script>";
+        }  else{
             echo "erro na inserção";        
-        
+        }
     }
     
     

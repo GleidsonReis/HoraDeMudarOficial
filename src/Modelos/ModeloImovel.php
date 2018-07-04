@@ -16,8 +16,33 @@ class ModeloImovel {
     function listarImoveis() {
 
         try {
-            $sql = 'select * from imovel where now() < dataExpiracao';
+            $sql = 'select * from imovel where now() <= dataExpiracao and status = 1';
             $p_sql = Conexao::getInstancia()->prepare($sql);
+            $p_sql->execute();
+            return $p_sql->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $ex) {
+            return 'deu erro na conexão:' . $ex;
+        }
+    }
+    
+     function listarImoveisFiltrado(String $bairro, String $cidade, String $valor) {
+        $where = "Teste";
+        try {
+           /* if($bairro!="")
+                $where = "and...";
+          
+            if($cidade !="")
+                $where = $where+$cidade;
+            
+            if($valor !="")
+                $where = $where+$valor;
+            */
+            
+            $sql = "select * from imovel where now() <= dataExpiracao and bairro = :bairro or cidade = :cidade or valor <= :valor ";
+            $p_sql = Conexao::getInstancia()->prepare($sql);
+            $p_sql->bindValue(':bairro', $bairro);
+            $p_sql->bindValue(':cidade', $cidade);
+            $p_sql->bindValue(':valor', $valor);
             $p_sql->execute();
             return $p_sql->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $ex) {
@@ -28,8 +53,9 @@ class ModeloImovel {
     
     function buscarImovelID(int $id) {
         try {
-            $sql = "select * from imovel where id = '$id'";
+            $sql = "select * from imovel where id = :id";
             $p_sql = Conexao::getInstancia()->prepare($sql);
+            $p_sql->bindValue(':id', $id);
             $p_sql->execute();
             return $p_sql->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $ex) {
@@ -39,8 +65,21 @@ class ModeloImovel {
     
     function buscarImovelIDUsuario(int $id) {
         try {
-            $sql = "select * from imovel where idUsuario = '$id'";
+            $sql = "select * from imovel where idUsuario = :id";
             $p_sql = Conexao::getInstancia()->prepare($sql);
+            $p_sql->bindValue(':id', $id);
+            $p_sql->execute();
+            return $p_sql->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $ex) {
+            return 'deu erro na conexão:' . $ex;
+        }
+    }
+  
+        function buscarImovelIDUsuarioAtivos(int $id) {
+        try {
+            $sql = "select * from imovel where idUsuario = :id and status = 1";
+            $p_sql = Conexao::getInstancia()->prepare($sql);
+            $p_sql->bindValue(':id', $id);
             $p_sql->execute();
             return $p_sql->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $ex) {
@@ -48,11 +87,23 @@ class ModeloImovel {
         }
     }
     
+      function buscarImovelIDUsuarioInativos(int $id) {
+        try {
+            $sql = "select * from imovel where idUsuario = :id and status = 0";
+            $p_sql = Conexao::getInstancia()->prepare($sql);
+            $p_sql->bindValue(':id', $id);
+            $p_sql->execute();
+            return $p_sql->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $ex) {
+            return 'deu erro na conexão:' . $ex;
+        }
+    }
     
     function excluirImovelID(int $id) {
         try {
-            $sql = "delete from imovel where id = '$id'";
+            $sql = "delete from imovel where id = :id";
             $p_sql = Conexao::getInstancia()->prepare($sql);
+            $p_sql->bindValue(':id', $id);
             $p_sql->execute();
             return;
         } catch (Exception $ex) {
@@ -60,6 +111,33 @@ class ModeloImovel {
         }
     }
     
+    function inativarImovelID(int $id) {
+        $statusAlterado=0;
+          try {
+          $sql = 'update imovel set status = :status where id = :id ';
+          $p_sql = Conexao::getInstancia()->prepare($sql);
+          $p_sql->bindValue(':status', $statusAlterado);
+          $p_sql->bindValue(':id', $id);
+          $p_sql->execute();
+            return;
+        } catch (Exception $ex) {
+            return 'deu erro na conexão:' . $ex;
+        }
+    }
+    
+    function ativarImovelID(int $id) {
+        $statusAlterado=1;
+          try {
+          $sql = 'update imovel set status = :status where id = :id ';
+          $p_sql = Conexao::getInstancia()->prepare($sql);
+          $p_sql->bindValue(':status', $statusAlterado);
+          $p_sql->bindValue(':id', $id);
+          $p_sql->execute();
+            return;
+        } catch (Exception $ex) {
+            return 'deu erro na conexão:' . $ex;
+        }
+    }
     
     
     function cadastrar(Imovel $imovel) {

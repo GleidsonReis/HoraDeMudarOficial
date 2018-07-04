@@ -50,15 +50,15 @@ class ControllerImovel {
              return $this->response->setContent($this->twig->render('telaExcluirImoveisUser.twig', ['imoveis' => $dados]));
         //return $this->response->setContent($this->twig->render('paginaPrincipal.twig', ['imoveis' => $dados]));
         else
-            echo "não há Imoveis Cadastrados";        
+            echo "não há Imoveis a Excluirs";        
     }
     
     public function acaoExcluirImovel($id){
        $modeloImovel = new ModeloImovel();
        $modeloImovel->excluirImovelID($id);
-       $destino = '/excluir-imovel-user';
-       $redirecionar = new RedirectResponse($destino);
-       $redirecionar->send();
+       echo "<script>alert('Imovel Excluido!!! ')</script>";
+       echo "<script>window.location = '/excluir-imovel-user';</script>"; 
+      
     }
     
     
@@ -87,25 +87,44 @@ class ControllerImovel {
         // Função Upload Imagem
          // validação
         $imagem = $this->contexto->files->get('imagem');
+       if($imagem){
         $path = "img/".$imagem->getClientOriginalName();
         $imagem->move("img/", $imagem->getClientOriginalName());
+       }else{
+           $path="";
+       }
         // echo $imagem->getClientMimeType();
         $imagem2 = $this->contexto->files->get('imagem2');
+       if($imagem2){
         $path2 = "img/".$imagem2->getClientOriginalName();
         $imagem2->move("img/", $imagem2->getClientOriginalName());
-        
+       }else{
+           $path2="";
+       }
+       
         $imagem3 = $this->contexto->files->get('imagem3');
+        if($imagem3){
         $path3 = "img/".$imagem3->getClientOriginalName();
         $imagem3->move("img/", $imagem3->getClientOriginalName());
+        }else{
+            $path3="";
+        }
         
         $imagem4 = $this->contexto->files->get('imagem4');
+        if($imagem4){
         $path4 = "img/".$imagem4->getClientOriginalName();
         $imagem4->move("img/", $imagem4->getClientOriginalName());
+        }else{
+            $path4="";
+        }
         
         $imagem5 = $this->contexto->files->get('imagem5');
+        if($imagem5){
         $path5 = "img/".$imagem5->getClientOriginalName();
         $imagem5->move("img/", $imagem5->getClientOriginalName());
-        
+        }else{
+            $path5="";
+        }
         $tipoImovel = $this->contexto->get('tipoImovel');
         $tipoNegocio = $this->contexto->get('tipoNegocio');
         $titulo = $this->contexto->get('titulo');
@@ -155,14 +174,51 @@ class ControllerImovel {
         $imovel = new Imovel($tipoImovel, $tipoNegocio, $titulo, $path, $path2, $path3, $path4, $path5, $descricao, $endereco, $bairro, $cidade, $contato, $qntcomodos, $qntquartos, $valor, $dataExpiracao, $status, $idUser);
         $modeloImovel = new ModeloImovel();
         if ($id = $modeloImovel->alterar($imovel, $id)){
-         echo '<script>location.href = "../alterar-imovel-user"</script>';
-            echo ("Imovel $id alterado com sucesso");
+       echo "<script>alert('Imovel Alterado com Sucesso ')</script>";
+       echo '<script>location.href = "../alterar-imovel-user"</script>';
+         
         } else{
             echo "erro na inserção";
         }
     }
+    
+ public function exibeTelaImoveisInativar() {
+        $modeloImovel = new ModeloImovel();
+        if ($dados = $modeloImovel->buscarImovelIDUsuarioAtivos($this->sessao->get('idUser')))
+             return $this->response->setContent($this->twig->render('telaInativarImoveisUser.twig', ['imoveis' => $dados]));
+        //return $this->response->setContent($this->twig->render('paginaPrincipal.twig', ['imoveis' => $dados]));
+        else
+         echo "<script>alert('Não há Imoveis a Inativar ')</script>";
+        echo "<script>window.location = '/tela-adm';</script>";      
+       
+    }
+    
+    public function acaoInativarImovel($id){
+       $modeloImovel = new ModeloImovel();
+       $modeloImovel->inativarImovelID($id);
+       echo "<script>alert('Imovel Inativado!!! ')</script>";
+       echo "<script>window.location = '/inativar-imovel-user';</script>"; 
+      
+       
+    }
         
-        
+   public function exibeTelaImoveisAtivar() {
+        $modeloImovel = new ModeloImovel();
+        if ($dados = $modeloImovel->buscarImovelIDUsuarioInativos($this->sessao->get('idUser')))
+             return $this->response->setContent($this->twig->render('telaAtivarImoveisUser.twig', ['imoveis' => $dados]));
+        //return $this->response->setContent($this->twig->render('paginaPrincipal.twig', ['imoveis' => $dados]));
+        else
+       echo "<script>alert('Não há Imoveis a Ativar ')</script>";
+       echo "<script>window.location = '/tela-adm';</script>"; 
+    }
+    
+    public function acaoAtivarImovel($id){
+       $modeloImovel = new ModeloImovel();
+       $modeloImovel->ativarImovelID($id);
+       echo "<script>alert('Imovel Ativado!!! ')</script>";
+       echo "<script>window.location = '/ativar-imovel-user';</script>"; 
+      
+    }    
         
 }
     

@@ -40,29 +40,7 @@ class ControllerPrincipal {
             echo "não há Imoveis Cadastrados";        
          
     }
-    /*    
-        public function chamaIndexTeste(){
-        //return $this->response->setContent($this->twig->render('master.twig'));
-        $modeloUsuario = new ModeloImovel();
-         if ($dados = $modeloUsuario->listarImoveis())
-             return $this->response->setContent($this->twig->render('paginaPrincipal.twig', ['imoveis' => $dados]));
-            else
-            echo "não há Imoveis Cadastrados";        
-      
-    } 
-    */
-    /*
-    public function show() {
-        if ($this->sessao->existe('Usuario'))
-            return $this->response->setContent($this->twig->render('cadastro.twig'));
-        else{
-            $destino = '/login';
-            $redirecionar = new RedirectResponse($destino);
-            $redirecionar->send();
-            
-        }
-    }
-*/
+
     public function chamaSubPagina($id) {
         
         $modeloImovel = new ModeloImovel();
@@ -85,5 +63,18 @@ class ControllerPrincipal {
        
     }
     
+     public function chamaIndexFiltrada(){
+        //return $this->response->setContent($this->twig->render('master.twig'));
+        $modeloImovel = new ModeloImovel();
+        $bairro = $this->contexto->get('filtroBairro');
+        $cidade = $this->contexto->get('filtroCidade');
+        $valor = $this->contexto->get('filtroValor');
+       
+        if ($dados = $modeloImovel->listarImoveisFiltrado($bairro, $cidade, $valor)){
+        return $this->response->setContent($this->twig->render('paginaPrincipal.twig', ['imoveis' => $dados]));
+        }else{
+            echo "Não há Imoveis com esses Filtros Procurados";        
+        }
+    }
     
 }

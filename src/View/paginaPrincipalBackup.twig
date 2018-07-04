@@ -58,45 +58,29 @@
         </nav>
 
         <!-- Page Content -->
-
         <div class="container">
             <img class="imagemBanner" src="img/Banner.jpg">
-            
-       {#     <h6 class="tituloSite">Deseja Filtrar por alguma Opção?</h6>
-            <form  class="form-group center-block text-center" id="formFiltro">
+
+            <form  class="form-group center-block text-center" id="formFiltro" enctype="multipart/form-data">
+
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">Filtrar Por Bairro:   </span>
+                        <span class="input-group-text">tipoImovel:   </span>
                     </div>
-                    <input type="text" name="filtroBairro" class="form-control"/>
+                    <input type="text" name="tipoImovel" class="form-control" placeholder="Sobrado / Casa / Apartamento"/>
                 </div>
 
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">Filtrar por Cidade:    </span>
+                        <span class="input-group-text">tipoNegocio:    </span>
                     </div>
-                    <input type="text" name="filtroCidade" class="form-control"/>
+                    <input type="text" name="tipoNegocio" class="form-control" placeholder="Aluguel / Venda / Temporada"/>
                 </div>
-
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Filtrar por Valor:    </span>
-                    </div>
-                    <input type="text" name="filtroValor" class="form-control" placeholder="Até qual valor deseja Encontrar um Imovel? "/>
-                </div>
-
                 <div class="">  
-                    <button type="submit" class="btn btn-success">Filtrar</button>
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
                 </div>
-       
-            </form>
-      #}
-    <div id="div_retorno">
 
-    </div>
-    <div id="processando" style="display: none;">
-        <img src="img/ajax-loader.gif" />
-    </div>
+            </form>
 
 
             {% block conteudoCentral %}
@@ -124,10 +108,13 @@
                             </div>
 
                         {%endfor%}
-                         </div>
                     {% endblock %}
                     <!-- /.row -->
-         </div>
+
+
+
+
+            </div>
             <!-- /.container -->
 
             <!-- Footer -->
