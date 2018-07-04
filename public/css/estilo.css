@@ -7,44 +7,51 @@
 
 .tituloSite{
     color: red;
-    
 }
 
 .tituloSite small {
     color: blue;
 }
 
-.imagemBanner {
-    width: 600px;
-    height: 250px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 50px;
+.row {
+      text-align: justify;
 }
 
-.zoom {
-			display:inline-block;
-			position: relative;
-		}
-		
-		/* magnifying glass icon */
-		.zoom:after {
-			content:'';
-			display:block; 
-			width:33px; 
-			height:33px; 
-			position:absolute; 
-			top:0;
-			right:0;
-			background:url(icon.png);
-		}
+.row a{
+  text-decoration:none; 
+  text-align: justify;
+  color: #040505
+  
+}
 
-		.zoom img {
-			display: block;
-		}
+.row a:hover {
+	background:#c8c8c8; 
+	color:black;
+}
+        
+.row h2{
+   color: #465955;
+   font-weight: bold;
+}
 
-		.zoom img::selection { background-color: transparent; }
 
-		#ex2 img:hover { cursor: url(grab.cur), default; }
-		#ex2 img:active { cursor: url(grabbed.cur), default; }
+.row h3{
+   color: #465955;
+   font-weight: bold;
+}
+
+.row h4{
+   color: #465955;
+}
+
+.container img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.input-group-prepend {
+    
+    margin-left: auto;
+    margin-right: auto
+}

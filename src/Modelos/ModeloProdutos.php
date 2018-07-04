@@ -15,7 +15,7 @@ class ModeloProdutos {
     function listarProdutos() {
 
         try {
-            $sql = 'select * from produtos';
+            $sql = 'select * from produtos where now() < dataExpiracao';
             $p_sql = Conexao::getInstancia()->prepare($sql);
             $p_sql->execute();
             return $p_sql->fetchAll(PDO::FETCH_OBJ);

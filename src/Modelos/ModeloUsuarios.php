@@ -26,7 +26,7 @@ class ModeloUsuarios {
 
     function cadastrar(Usuario $usuario) {
          try {
-            $sql = 'insert into usuario (login, senha, telefone, email) values(:login, :senha, :telefone, :email)';
+            $sql = 'insert into usuario (login, senha, telefone, email) values(:login, MD5(:senha), :telefone, :email)';
             $p_sql = Conexao::getInstancia()->prepare($sql);
             $p_sql->bindValue(':login', $usuario->getLogin());
             $p_sql->bindValue(':senha', $usuario->getSenha());
@@ -45,7 +45,7 @@ class ModeloUsuarios {
     function buscarusuario(String $login, String $senha) {
     
         try {
-            $sql = 'select * from usuario where login = :login and senha = :senha';
+            $sql = 'select * from usuario where login = :login and senha = MD5(:senha)';
             $p_sql = Conexao::getInstancia()->prepare($sql);
             $p_sql->bindValue(':login', $login);
             $p_sql->bindValue(':senha', $senha);

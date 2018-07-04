@@ -16,7 +16,7 @@ class ModeloImovel {
     function listarImoveis() {
 
         try {
-            $sql = 'select * from imovel';
+            $sql = 'select * from imovel where now() < dataExpiracao';
             $p_sql = Conexao::getInstancia()->prepare($sql);
             $p_sql->execute();
             return $p_sql->fetchAll(PDO::FETCH_OBJ);

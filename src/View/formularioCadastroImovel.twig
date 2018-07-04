@@ -11,14 +11,14 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">tipoImovel:   </span>
                 </div>
-                <input type="text" name="tipoImovel" class="form-control"/>
+                <input type="text" name="tipoImovel" class="form-control" placeholder="Sobrado / Casa / Apartamento"/>
             </div>
 
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text">tipoNegocio:    </span>
                 </div>
-                <input type="text" name="tipoNegocio" class="form-control"/>
+                <input type="text" name="tipoNegocio" class="form-control" placeholder="Aluguel / Venda / Temporada"/>
             </div>
 
             <div class="input-group">
@@ -119,13 +119,17 @@
                 <input type="text" name="valor" class="form-control"/>
             </div>
             
-            <div class="input-group">
+             <div class="input-group date" data-date-format="dd.mm.yyyy">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Data Expiração do Anuncio:    </span>
                 </div>
-                <input type="datetime-local" name="dataExpiracao" class="form-control"/>
-            </div>
-                  
+                                    
+           
+                  <input  type="text" class="form-control"  name="dataExpiracao" placeholder="dd.mm.yyyy">
+                  <div class="input-group-addon" >
+                    <span class="glyphicon glyphicon-th"></span>
+                  </div>
+             </div>
             <div class="">  
                 <button type="submit" class="btn btn-success">Cadastrar</button>
             </div>
@@ -140,3 +144,18 @@
     </div>
 
 {% endblock %}
+
+{% block rodape %}
+                        <script src="js/jquery-3.3.1.min.js" type="text/javascript" ></script>
+                        <script src="js/funcoes.js" type="text/javascript" ></script>
+                        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+                        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Plugin pro Datapicker novo -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js'></script>
+    <script>
+     $('.input-group.date').datepicker({format: "yyyy.mm.dd"});
+    </script>
+                        
+                    {% endblock %}

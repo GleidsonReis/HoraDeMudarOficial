@@ -8,16 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Hora de Mudar</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
+   <!-- Custom styles for this template -->
     <link href="../css/startbootstrap-3-col-portfolio.css" rel="stylesheet">
 <link href="../css/estilo.css" rel="stylesheet">
 <link href="../css/lightbox.min.css" rel="stylesheet">
-<link href="css/lightbox.css" rel="stylesheet">
 
     
   </head>
@@ -75,23 +73,73 @@
     
         <div class="col-lg-4 col-sm-6 portfolio-item">
              {% if imoveis.imagem1 %}<a href="../{{imoveis.imagem1}}" data-lightbox="{{imoveis.imagem1}}" data-title="My caption"><img class="card-img-top"  src="../{{imoveis.imagem1}}"></a>  {% endif %}
+        </div>
+        <div class="col-lg-4 col-sm-6 portfolio-item">
              {% if imoveis.imagem2 %}<a href="../{{imoveis.imagem2}}" data-lightbox="{{imoveis.imagem2}}" data-title="My caption"><img class="card-img-top"  src="../{{imoveis.imagem2}}"></a>  {% endif %}
+        </div>
+        <div class="col-lg-4 col-sm-6 portfolio-item">
              {% if imoveis.imagem3 %}<a href="../{{imoveis.imagem3}}" data-lightbox="{{imoveis.imagem3}}" data-title="My caption"><img class="card-img-top"  src="../{{imoveis.imagem3}}"></a>  {% endif %}
-             {% if imoveis.imagem4 %}<a href="../{{imoveis.imagem4}}" data-lightbox="{{imoveis.imagem4}}" data-title="My caption"><img class="card-img-top"  src="../{{imoveis.imagem4}}"></a>  {% endif %}
-             {% if imoveis.imagem5 %}<a href="../{{imoveis.imagem5}}" data-lightbox="{{imoveis.imagem5}}" data-title="My caption"><img class="card-img-top"  src="../{{imoveis.imagem5}}"></a>  {% endif %}
-            <div class="card-body">
-              <h4 class="card-title">
-                 {{imoveis.titulo}}
-              </h4>
-              <p class="card-text">{{imoveis.descricao}}</p>
-           
+        </div>
+        <div class="col-lg-4 col-sm-6 portfolio-item">     
+        {% if imoveis.imagem4 %}<a href="../{{imoveis.imagem4}}" data-lightbox="{{imoveis.imagem4}}" data-title="My caption"><img class="card-img-top"  src="../{{imoveis.imagem4}}"></a>  {% endif %}
+        </div>
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+        {% if imoveis.imagem5 %}<a href="../{{imoveis.imagem5}}" data-lightbox="{{imoveis.imagem5}}" data-title="My caption"><img class="card-img-top"  src="../{{imoveis.imagem5}}"></a>  {% endif %}
+        </div>
+          </div> 
+        
+         <div class="row">
+               <h2> Informações Sobre este Imovel:</h2>
+           </div>
+        
+        
+        <div class="row">
+             <h3><b>Titulo:   </b>{{imoveis.titulo}}</h3>
+         </div>
+          
+        <div class="row">
+            <h4><b> Tipo deste Imovel:   </b> {{imoveis.tipoImovel}}</h4>
+               </div>
+               
+               <div class="row">
+                 <h4><b>Tipo do Negocio deste Imovel:   </b>{{imoveis.tipoNegocio}}</h4>
+               </div>
+                
+                <div class="row">
+                 <h4><b>Decrição   </b>{{imoveis.descricao}}</h4>
+               </div>
+                <div class="row">
+                 <h4><b>Endereço:   </b>{{imoveis.endereco}}</h4>
+               </div>
+                <div class="row">
+                 <h4><b>Bairro:   </b>{{imoveis.bairro}}</h4>
+               </div>
+                <div class="row">
+                 <h4><b>Cidade:  </b>{{imoveis.cidade}}</h4>
+               </div>
+                 <div class="row">
+                 <h4><b>Quantidade de  Comodos: </b>{{imoveis.qntcomodos}}</h4>
+               </div>
+               <div class="row">
+                 <h4><b>Quantidade de Quartos:   </b>{{imoveis.qntquartos}}</h4>
+               </div>
+                 <div class="row">
+                 <h4><b>Valor:   </b>{{imoveis.valor}}</h4>
+               </div>
+                 <div class="row">
+                 <h4><b>Cidade:   </b>{{imoveis.cidade}}</h4>
+               </div>
+                <div class="row">
+                 <h4><b>Tipo Negocio deste Imovel:   </b>{{imoveis.tipoNegocio}}</h4>
+               </div>
+            </div>
        {%endfor%}
     {% endblock %}
       <!-- /.row -->
     </div>
+      </div>    
     <!-- /.container -->
 
-    <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; HoraDeMudar.com 2018</p>
@@ -106,8 +154,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/lightbox-plus-jquery.min.js"></script>
-    <script src="path/to/lightbox.js"></script>
+
   </body>
 
 </html>
